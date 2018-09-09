@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cat > temph <<EOF
+c01
+c02
+c03
+c04
+c05
+c06
+c07
+c08
+EOF
+
+./ppexec -f temph -n 16 ./t5
+
+echo DONE with T5
+
+rm -f temph

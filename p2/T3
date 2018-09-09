@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cat > temph <<EOF
+c11
+c22
+EOF
+
+# note t3.c is same as t2.c
+./ppexec -f temph -n 2 ./t3
+
+echo DONE with T3
+
+rm -f temph

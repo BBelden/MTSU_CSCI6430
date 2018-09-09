@@ -1,0 +1,82 @@
+
+                        Parallel Processing
+                            Project 2
+                           Spring 2017
+
+
+turnin code: pp_p2
+
+
+Enhance p1 by supplying a port number to each of the ranks so they
+can use it in MPI_Init etc.  It can be used to connect back to the
+process running mpiexec and retrieve information such as how to 
+contact other ranks.
+
+Then, implement your own MPI that supports the following functions:
+
+    MPI_Comm_rank 	from env
+    MPI_Comm_size 	from env
+    MPI_Finalize 	fork parent handles this
+    MPI_Init   		start here, with calling socket. 
+					send rank sockets back to calling machine
+					sin.sin_port = htons(port); --> htons(0);
+					set port to 0, and OS will choose one, then use getsockname() to find port
+					i am assigned 4401-4499. or can use any ports from 0-3999,6001-65000
+
+					rank, size, host from env
+					get accept(listen) socket - set port  -- connect to host
+					return MPI_SUCCESS
+
+					ppexec accepts connections in a loop -- save host and port info from sender
+					send info about all ranks to all ranks? 
+
+					hosts have to know the cwd - in mpiexec:
+						getcwd() -> into env var -> send to host --> cd \$PWD
+						fix ppexec for looking for child process end
+
+    MPI_Send (just wrapper for Ssend)
+					validate args (including comm)
+					get connection to dest (if don't have)
+						connect to dest
+					send msg (char or int)
+					progress engine!! - could handle multiple things at once (ie receives)
+					send is done when buffer is reusable by the user			
+					read MPI standards: advice to users/implementors
+					... could send header first, and then send buffer in PE()
+					
+    MPI_Ssend		
+    MPI_Recv		
+    MPI_Barrier		no one leaves until we're all here
+
+	progress engine: 
+		is there something to do? 	// in separate thread? whatever, whenever
+									// as uni-process after every MPI call
+		select system call	
+			nfds - FD_SETSIZE
+			timeout - NULL: indef, 0: poll, !=0: =hang time
+			EOF shows something there
+	
+
+
+	remind dr butler about test files
+
+library blahblah in 6430rmb/DEMOS/LIB
+
+https://www.cs.mtsu.edu/~rbutler/courses/pp6330/pp.html
+
+You only need to support MPI_COMM_WORLD for this project.
+
+Place your object code into a library named libpp.a which 
+test files can link against.
+
+Compile and link the program previously named p1 as ppexec.
+
+Have a makefile that will build libpp.a and compile and link
+ppexec as well as any test programs that we develop.
+
+I will cd to my dir containing your project files and type:
+    rm -f libpp.a
+    rm -f *.o
+    make
+
+Use turnin as in p1.

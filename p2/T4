@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cat > temph <<EOF
+c01
+c02
+c03
+c04
+EOF
+
+./ppexec -f temph -n 8 ./t4
+
+echo DONE with T4
+
+rm -f temph

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+./ppexec -n 2 ./t2
+
+echo DONE with T2

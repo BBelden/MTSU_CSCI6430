@@ -1,0 +1,33 @@
+Assume running on c00.
+
+./p1  env  | grep PP_
+
+./p1  -n 3  env  | grep PP_    ## hostnames file contains c01-c09
+
+
+./p1 hostname   # NO hostnames file
+    c00
+
+./p1 hostname   # there exists a hostnames file containing c01-c04
+    c01
+
+./p1 -n 4 hostname   # NO hostnames file
+    c00
+    c00
+    c00
+    c00
+
+
+./p1 -n 5 hostname   # there exists a hostnames file containing c01-c04
+    c01              # may be in any order
+    c02
+    c03
+    c04
+    c01
+
+./p1 -f somefile -n 5 hostname   # somefile contains c09-c22
+    c09
+    c10
+    c11
+    c12
+    c13

@@ -1,0 +1,21 @@
+
+                        Parallel Processing
+                            Project 4
+                           Spring 2017
+
+
+    turnin code: pp_p4
+
+
+    Enhance your MPI library to support the following functions:
+
+        int MPI_Isend(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request *);
+        int MPI_Irecv(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request *);
+        int MPI_Test(MPI_Request *, int *, MPI_Status *);
+        int MPI_Wait(MPI_Request *, MPI_Status *);
+
+    As in p3, place your object code into a library named libpp.a which test
+    programs can link against.
+
+    Have a makefile that will build libpp.a and compile and link all test
+    programs that we develop.

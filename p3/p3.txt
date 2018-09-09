@@ -1,0 +1,22 @@
+
+                        Parallel Processing
+                            Project 3
+                           Spring 2017
+
+
+turnin code: pp_p3
+
+
+Enhance your MPI library to support the following functions:
+
+    double MPI_Wtime(void);
+    int MPI_Comm_dup(MPI_Comm, MPI_Comm *);
+    int MPI_Bcast(void*, int, MPI_Datatype, int, MPI_Comm );
+    int MPI_Gather(void* , int, MPI_Datatype, void*, int, MPI_Datatype, int, MPI_Comm); 
+
+Place your object code into a library named libpp.a which our
+test programs can link against.
+
+Have a makefile that will build libpp.a and compile and link
+all test programs that we develop for this project.
+

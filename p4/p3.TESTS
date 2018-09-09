@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# pgm="mpiexec"
+pgm=$1
+
+cat >TEMPHOSTS <<EOF
+c01
+c03
+c05
+c07
+c02
+c04
+c06
+c08
+EOF
+
+#### wtime
+
+$pgm -n 5 p3_tester wtime
+
+#### bcast
+
+$pgm -n 8 p3_tester bcast
+
+$pgm -f ./TEMPHOSTS -n 4 p3_tester bcast
+
+#### gather
+
+$pgm -n 8 p3_tester gather
+
+#### duponly
+
+$pgm -n 2 p3_tester duponly

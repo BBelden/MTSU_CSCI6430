@@ -1,0 +1,21 @@
+
+                        Parallel Processing
+                            Project 5
+                           Spring 2017
+
+
+turnin code: pp_p5
+
+Enhance your MPI library to support the following:
+
+    int MPI_Reduce(const void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype,
+                   MPI_Op op, int root, MPI_Comm comm);
+    int MPI_Op_create(MPI_User_function *user_fn, int commute, MPI_Op *op);
+
+
+MPI_Reduce only has to support MPI_INT as the data type.
+
+MPI_Reduce is only required to support MPI_SUM as its an available *built-in* op.
+However, it should also provide the possibility for the user to provide a user-defined
+op by creating one with MPI_Op_create.  The commute argument will not be relevant
+for our purposes.

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+./ppexec -n 4 ./p4_tester wtime
+
+./ppexec -n 2 ./p4_tester nonblock
+

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+./ppexec -n 8 ./t6
+
+echo DONE with T6
+
+rm -f temph
